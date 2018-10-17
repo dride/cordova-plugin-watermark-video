@@ -1,0 +1,37 @@
+{
+  "name": "cordova-plugin-rtsp-vlc",
+  "version": "3.0.1",
+  "description": "Cordova RTSP player",
+  "cordova": {
+    "id": "cordova-plugin-rtsp-vlc",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dride/cordova-plugin-rtsp-vlc.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova",
+    "phonegap",
+    "rtsp",
+    "vlc"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Saoron",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/dride/cordova-plugin-rtsp-vlc/issues"
+  },
+  "homepage": "https://github.com/dride/cordova-plugin-rtsp-vlc#readme"
+}
