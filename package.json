@@ -1,6 +1,6 @@
 {
-  "name": "cordova-plugin-rtsp-vlc",
-  "version": "3.0.1",
+  "name": "cordova-plugin-watermark-video",
+  "version": "0.1",
   "description": "Cordova RTSP player",
   "cordova": {
     "id": "cordova-plugin-rtsp-vlc",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dride/cordova-plugin-rtsp-vlc.git"
+    "url": "https://github.com/dride/cordova-plugin-watermark-video.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -19,8 +19,8 @@
     "cordova-ios",
     "cordova",
     "phonegap",
-    "rtsp",
-    "vlc"
+    "video",
+    "watermark"
   ],
   "engines": [
     {
@@ -28,10 +28,10 @@
       "version": ">=3.0.0"
     }
   ],
-  "author": "Saoron",
+  "author": "Yossi Neiman",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/dride/cordova-plugin-rtsp-vlc/issues"
+    "url": "https://github.com/dride/cordova-plugin-watermark-video/issues"
   },
-  "homepage": "https://github.com/dride/cordova-plugin-rtsp-vlc#readme"
+  "homepage": "https://github.com/dride/cordova-plugin-watermark-video#readme"
 }
