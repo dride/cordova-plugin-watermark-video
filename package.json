@@ -3,7 +3,7 @@
   "version": "0.1",
   "description": "Cordova RTSP player",
   "cordova": {
-    "id": "cordova-plugin-rtsp-vlc",
+    "id": "cordova-plugin-watermark-video",
     "platforms": [
       "ios",
       "android"
