@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-watermark-video",
-  "version": "0.1",
-  "description": "Cordova RTSP player",
+  "version": "0.1.0",
+  "description": "Add watermark to videos",
   "cordova": {
     "id": "cordova-plugin-watermark-video",
     "platforms": [
