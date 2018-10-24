@@ -1,3 +1,6 @@
+var plugin = function () {
+    return window.BackgroundGeolocation;
+};
 var WatermarkVideo = (function () {
     function WatermarkVideo() {
     }
@@ -22,7 +25,8 @@ var WatermarkVideo = (function () {
      * ```
      */
     WatermarkVideo.addWatermarkToVideo = function (videoSrc, videoDest, waterMarkImageSrc, top, left) {
-        return window.watermarkVideo.addWatermarkToVideo(videoSrc, videoDest, waterMarkImageSrc, top, left);
+        var watermark = plugin();
+        return watermark.addWatermarkToVideo(videoSrc, videoDest, waterMarkImageSrc, top, left);
     };
     return WatermarkVideo;
 }());

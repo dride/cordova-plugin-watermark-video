@@ -1,3 +1,7 @@
+const plugin = function() {
+  return (<any>window).BackgroundGeolocation;
+};
+
 export default class WatermarkVideo {
   /**
    * @description Add water mark to a video
@@ -27,7 +31,8 @@ export default class WatermarkVideo {
     top: number,
     left: number
   ): Promise<string> {
-    return (<any>window).watermarkVideo.addWatermarkToVideo(
+    let watermark = plugin();
+    return watermark.addWatermarkToVideo(
       videoSrc,
       videoDest,
       waterMarkImageSrc,
