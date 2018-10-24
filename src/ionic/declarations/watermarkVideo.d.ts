@@ -3,6 +3,7 @@ declare module "cordova-plugin-watermark-video" {
     /**
      * @description Add water mark to a video
      *
+     * @returns Promise: dest path of video
      * @param videoSrc src of video, should be a url, use ionic's convertFileSrc method to access the local server
      * @param videoDest name of destination video, will generate this video in 'documentsDirectory'
      * @param waterMarkImageSrc src of water mark image, use example to see how to add local images
