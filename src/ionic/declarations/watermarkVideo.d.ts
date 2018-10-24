@@ -1,5 +1,5 @@
 declare module "cordova-plugin-watermark-video" {
-  export default class watermarkVideo {
+  export default class WatermarkVideo {
     /**
      * @description Add water mark to a video
      *
