@@ -19,12 +19,10 @@ window.Watermark.addWatermarkToVideo(
 	videoDest,
 	waterMarkImageSrc,
 	top,
-	left,
-	done => {},
-	error => {}
+	left
 );
 ```
 
-## Response
+## Response Promise<{videoDest: 'URI'}>
 
 done: string - videoDest URI
