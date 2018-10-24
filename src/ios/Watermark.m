@@ -84,12 +84,22 @@
     
 
     [assetExport exportAsynchronouslyWithCompletionHandler:
-     ^(void ) {
-         dispatch_async(dispatch_get_main_queue(), ^{
-             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", assetExport.outputURL]];
-             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-         });
-     }
+         ^(void ) {
+             if (AVAssetExportSessionStatusCompleted == assetExport.status)
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", assetExport.outputURL]];
+                     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+                 });
+             }
+             else if (AVAssetExportSessionStatusFailed == assetExport.status)
+             {
+                 NSLog(@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status);
+                 CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status]];
+                 [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+             }
+             
+         }
      ];
 
 }
