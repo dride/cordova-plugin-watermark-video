@@ -9,6 +9,11 @@
       "android"
     ]
   },
+  "main": "src/ionic/index.js",
+  "scripts": {
+    "build": "tsc -p src/ionic",
+    "prepublish": "npm run build"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dride/cordova-plugin-watermark-video"
