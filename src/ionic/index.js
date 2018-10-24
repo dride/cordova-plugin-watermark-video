@@ -1,5 +1,5 @@
 var plugin = function () {
-    return window.BackgroundGeolocation;
+    return window.WatermarkVideo;
 };
 var WatermarkVideo = (function () {
     function WatermarkVideo() {
