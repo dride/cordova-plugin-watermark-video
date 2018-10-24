@@ -32,12 +32,12 @@ export default class WatermarkVideo {
     left: number
   ): Promise<string> {
     let watermark = plugin();
-    return watermark.addWatermarkToVideo.apply(watermark, [
+    return watermark.addWatermarkToVideo(
       videoSrc,
       videoDest,
       waterMarkImageSrc,
       top,
       left
-    ]);
+    );
   }
 }
