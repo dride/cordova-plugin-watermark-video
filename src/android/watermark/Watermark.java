@@ -75,7 +75,7 @@ public class Watermark extends CordovaPlugin {
     Log.d(TAG, "addWatermarkToVideo: addWatermarkToVideo entered.");
 
 
-	callbackContext.success('xx');
+	callbackContext.success("xx");
 
 
     // if (!validateData(data)) {
