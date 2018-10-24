@@ -8,7 +8,7 @@
 
 ## Supported Platforms
 
-- Android
+- Android [Soon]
 - iOS
 
 ## Usage
