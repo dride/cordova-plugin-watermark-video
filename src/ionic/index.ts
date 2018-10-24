@@ -2,9 +2,21 @@ const plugin = function() {
   return (<any>window).watermarkVideo;
 };
 
-export default class watermarkVideo {
-  static addWatermarkToVideo() {
+export default class WatermarkVideo {
+  static addWatermarkToVideo(
+    videoSrc: string,
+    videoDest: string,
+    waterMarkImageSrc: string,
+    top: number,
+    left: number
+  ) {
     let watermark = plugin();
-    watermark.addWatermarkToVideo.apply(watermark, arguments);
+    return watermark.addWatermarkToVideo.apply(watermark, [
+      videoSrc,
+      videoDest,
+      waterMarkImageSrc,
+      top,
+      left
+    ]);
   }
 }

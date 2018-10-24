@@ -1,13 +1,19 @@
 var plugin = function () {
     return window.watermarkVideo;
 };
-var watermarkVideo = (function () {
-    function watermarkVideo() {
+var WatermarkVideo = (function () {
+    function WatermarkVideo() {
     }
-    watermarkVideo.addWatermarkToVideo = function () {
+    WatermarkVideo.addWatermarkToVideo = function (videoSrc, videoDest, waterMarkImageSrc, top, left) {
         var watermark = plugin();
-        watermark.addWatermarkToVideo.apply(watermark, arguments);
+        return watermark.addWatermarkToVideo.apply(watermark, [
+            videoSrc,
+            videoDest,
+            waterMarkImageSrc,
+            top,
+            left
+        ]);
     };
-    return watermarkVideo;
+    return WatermarkVideo;
 }());
-export default watermarkVideo;
+export default WatermarkVideo;

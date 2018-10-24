@@ -25,7 +25,7 @@ declare module "cordova-plugin-watermark-video" {
       videoDest: string,
       waterMarkImageSrc: string,
       top: number,
-      top: number
+      left: number
     ): Promise<string>;
   }
 }
