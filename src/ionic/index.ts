@@ -1,5 +1,5 @@
 const plugin = function() {
-  return (<any>window).BackgroundGeolocation;
+  return (<any>window).WatermarkVideo;
 };
 
 export default class WatermarkVideo {
