@@ -26,7 +26,13 @@ var WatermarkVideo = (function () {
      */
     WatermarkVideo.addWatermarkToVideo = function (videoSrc, videoDest, waterMarkImageSrc, top, left) {
         var watermark = plugin();
-        return watermark.addWatermarkToVideo(videoSrc, videoDest, waterMarkImageSrc, top, left);
+        return watermark.addWatermarkToVideo.apply(watermark, [
+            videoSrc,
+            videoDest,
+            waterMarkImageSrc,
+            top,
+            left
+        ]);
     };
     return WatermarkVideo;
 }());
