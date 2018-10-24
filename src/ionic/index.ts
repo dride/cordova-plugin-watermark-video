@@ -1,7 +1,3 @@
-const plugin = function() {
-  return (<any>window).watermarkVideo;
-};
-
 export default class WatermarkVideo {
   /**
    * @description Add water mark to a video
@@ -31,8 +27,7 @@ export default class WatermarkVideo {
     top: number,
     left: number
   ): Promise<string> {
-    let watermark = plugin();
-    return watermark.addWatermarkToVideo(
+    return (<any>window).watermarkVideo.addWatermarkToVideo(
       videoSrc,
       videoDest,
       waterMarkImageSrc,
