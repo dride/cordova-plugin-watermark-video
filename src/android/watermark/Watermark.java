@@ -50,7 +50,7 @@ public class Watermark extends CordovaPlugin {
 
     // Actions that DO require WiFi to be enabled
     if (action.equals(ADD_WATERMARK_TO_VIDEO)) {
-      this.add(callbackContext, data);
+      this.addWatermarkToVideo(callbackContext, data);
     } else {
       callbackContext.error("Incorrect action parameter: " + action);
       // The ONLY time to return FALSE is when action does not exist that was called
@@ -75,7 +75,7 @@ public class Watermark extends CordovaPlugin {
     Log.d(TAG, "addWatermarkToVideo: addWatermarkToVideo entered.");
 
 
-	callbackContext.success("/var/dasdasdsa/dsadsadsa.mp4");
+	callbackContext.success(args.getString(0));
 
 
     // if (!validateData(data)) {

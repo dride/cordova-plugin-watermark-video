@@ -1,5 +1,5 @@
 const plugin = function() {
-  return (<any>window).WatermarkVideo;
+  return (<any>window).Watermark;
 };
 
 export default class WatermarkVideo {
