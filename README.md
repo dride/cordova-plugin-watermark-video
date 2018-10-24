@@ -13,6 +13,22 @@
 
 ## Usage
 
+### Typescript
+
+```
+import WatermarkVideo from "cordova-plugin-watermark-video";
+
+WatermarkVideo.addWatermarkToVideo(
+	videoSrc,
+	videoDest,
+	waterMarkImageSrc,
+	top,
+	left
+);
+```
+
+### Javascript
+
 ```
 window.Watermark.addWatermarkToVideo(
 	videoSrc,
