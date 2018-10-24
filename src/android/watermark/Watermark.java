@@ -72,20 +72,16 @@ public class Watermark extends CordovaPlugin {
    * @return uri to processed video
    */
   private boolean addWatermarkToVideo(CallbackContext callbackContext, JSONArray data) {
-    Log.d(TAG, "addWatermarkToVideo: addWatermarkToVideo entered.");
+	Log.d(TAG, "addWatermarkToVideo: addWatermarkToVideo entered.");
 
-
-	callbackContext.success("xx");
-
-
-    // if (!validateData(data)) {
-    //   callbackContext.error("REMOVE_INVALID_DATA");
-    //   Log.d(TAG, "WifiWizard2: remove data invalid");
-    //   return false;
-    // }
+	callbackContext.error("NOT_SUPPORTED");
+	Log.d(TAG, "VideoWatermark: remove data invalid");
+	return false;
+    
 
 
   }
 
+  
 
 }
