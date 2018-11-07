@@ -82,9 +82,13 @@
     assetExport.outputURL = exportUrl;
     assetExport.shouldOptimizeForNetworkUse = YES;
     
+    NSMutableDictionary *cb = [[NSMutableDictionary alloc] init];
 
+    [cb setObject:command forKey:@"command"];
+    [cb setObject:assetExport forKey:@"assetExport"];
+    
     NSTimer *progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateExportDisplay:)
-                                                            userInfo:command repeats:YES];
+                                                            userInfo:cb repeats:YES];
     
     [assetExport exportAsynchronouslyWithCompletionHandler:
          ^(void ) {
@@ -92,7 +96,8 @@
             if (AVAssetExportSessionStatusCompleted == assetExport.status)
              {
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", assetExport.outputURL]];
+                     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:
+                                                      [NSString stringWithFormat: @"{\"done\": true, \"outputUrl\": \"%@\"}", assetExport.outputURL]];
                      [pluginResult setKeepCallbackAsBool:NO];
                      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                  });
@@ -100,7 +105,8 @@
              else if (AVAssetExportSessionStatusFailed == assetExport.status)
              {
                  NSLog(@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status);
-                 CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status]];
+                 CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:
+                                                  [NSString stringWithFormat:@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status]];
                  [pluginResult setKeepCallbackAsBool:NO];
 
                  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -112,23 +118,21 @@
 }
 
 
-// - (void)updateExportDisplay:(NSTimer*)timer {
-//     AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
-//     NSLog (@"Got the string: %f", assetExport.progress);
-// }
-
 - (void)updateExportDisplay:(NSTimer*)timer {
-    //AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
-    CDVInvokedUrlCommand *command =(AVAssetExportSession*)[timer userInfo];
-    //NSLog (@"Got the string: %f", assetExport.progress);
     
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", 5]];
+    
+    NSDictionary *dict = [timer userInfo];
+    CDVInvokedUrlCommand* command = [dict objectForKey:@"command"];
+    AVAssetExportSession* assetExport = [dict objectForKey:@"assetExport"];
+    
+
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:
+                                        [NSString stringWithFormat:@"{\"progress\": %f}", assetExport.progress*100]
+                                    ];
     [pluginResult setKeepCallbackAsBool:YES];
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     
-    
-
 }
 
 

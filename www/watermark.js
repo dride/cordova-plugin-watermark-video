@@ -13,44 +13,44 @@
  *  limitations under the License.
  */
 
-/**
- * Watermark add watermark to a video.
- * @constructor
- */
-var Watermark = function() {
-  this.onProgress = null; // optional callback
-};
-
-FileTransfer.prototype.addWatermarkToVideo = function(
-  videoSrc,
-  videoDest,
-  waterMarkImageSrc,
-  top,
-  left,
-  progress
-) {
-  return new Promise(function(resolve, reject) {
-    var callback = function(result) {
-      console.log(result);
-      if (typeof result != "undefined") {
-        if (progress) {
-          progress(result);
+var Watermark = {
+  addWatermarkToVideo: function(
+    videoSrc,
+    videoDest,
+    waterMarkImageSrc,
+    top,
+    left,
+    progress
+  ) {
+    return new Promise(function(resolve, reject) {
+      var callback = result => {
+        try {
+          var res = JSON.parse(result);
+          if (res.progress) {
+            if (progress) {
+              progress(result);
+            }
+          }
+          if (res.done) {
+            resolve(res.outputUrl);
+          }
+        } catch (e) {
+          console.error(e);
+          reject(e);
         }
-      } else {
-        resolve(result);
-      }
-    };
+      };
 
-    cordova.exec(callback, reject, "Watermark", "addWatermarkToVideo", [
-      {
-        videoSrc: videoSrc,
-        videoDest: videoDest,
-        waterMarkImageSrc: waterMarkImageSrc,
-        top: top,
-        left: left
-      }
-    ]);
-  });
+      cordova.exec(callback, reject, "Watermark", "addWatermarkToVideo", [
+        {
+          videoSrc: videoSrc,
+          videoDest: videoDest,
+          waterMarkImageSrc: waterMarkImageSrc,
+          top: top,
+          left: left
+        }
+      ]);
+    });
+  }
 };
 
 module.exports = Watermark;
