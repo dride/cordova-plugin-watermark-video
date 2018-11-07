@@ -26,14 +26,15 @@ FileTransfer.prototype.addWatermarkToVideo = function(
   videoDest,
   waterMarkImageSrc,
   top,
-  left
+  left,
+  progress
 ) {
   return new Promise(function(resolve, reject) {
     var callback = function(result) {
       console.log(result);
       if (typeof result != "undefined") {
-        if (self.onProgress) {
-          self.onProgress(result);
+        if (progress) {
+          progress(result);
         }
       } else {
         resolve(result);
