@@ -13,26 +13,43 @@
  *  limitations under the License.
  */
 
-var Watermark = {
-  addWatermarkToVideo: function(
-    videoSrc,
-    videoDest,
-    waterMarkImageSrc,
-    top,
-    left
-  ) {
-    return new Promise(function(resolve, reject) {
-      cordova.exec(resolve, reject, "Watermark", "addWatermarkToVideo", [
-        {
-          videoSrc: videoSrc,
-          videoDest: videoDest,
-          waterMarkImageSrc: waterMarkImageSrc,
-          top: top,
-          left: left
+/**
+ * Watermark add watermark to a video.
+ * @constructor
+ */
+var Watermark = function() {
+  this.onProgress = null; // optional callback
+};
+
+FileTransfer.prototype.addWatermarkToVideo = function(
+  videoSrc,
+  videoDest,
+  waterMarkImageSrc,
+  top,
+  left
+) {
+  return new Promise(function(resolve, reject) {
+    var callback = function(result) {
+      console.log(result);
+      if (typeof result != "undefined") {
+        if (self.onProgress) {
+          self.onProgress(result);
         }
-      ]);
-    });
-  }
+      } else {
+        resolve(result);
+      }
+    };
+
+    cordova.exec(callback, reject, "Watermark", "addWatermarkToVideo", [
+      {
+        videoSrc: videoSrc,
+        videoDest: videoDest,
+        waterMarkImageSrc: waterMarkImageSrc,
+        top: top,
+        left: left
+      }
+    ]);
+  });
 };
 
 module.exports = Watermark;

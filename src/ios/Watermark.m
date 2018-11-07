@@ -4,6 +4,7 @@
 
 @implementation Watermark
 
+
 - (void)addWatermarkToVideo:(CDVInvokedUrlCommand*)command {
    
 
@@ -14,7 +15,6 @@
     CGFloat top = [[options objectForKey:@"top"] doubleValue];
     CGFloat left = [[options objectForKey:@"left"] doubleValue];
 
-    
     NSString *filePath = videoSrc;
     
     AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:[NSURL fileURLWithPath:filePath]  options:nil];
@@ -83,9 +83,13 @@
     assetExport.shouldOptimizeForNetworkUse = YES;
     
 
+    NSTimer *progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateExportDisplay:)
+                                                            userInfo:assetExport repeats:YES];
+    
     [assetExport exportAsynchronouslyWithCompletionHandler:
          ^(void ) {
-             if (AVAssetExportSessionStatusCompleted == assetExport.status)
+            [progressTimer invalidate];
+            if (AVAssetExportSessionStatusCompleted == assetExport.status)
              {
                  dispatch_async(dispatch_get_main_queue(), ^{
                      CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", assetExport.outputURL]];
@@ -98,14 +102,17 @@
                  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status]];
                  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
              }
-             
+
          }
      ];
 
 }
+- (void)updateExportDisplay:(NSTimer*)timer {
+    AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
+    NSLog (@"Got the string: %f", assetExport.progress);
+    
 
-
-
+}
 
 
 @end

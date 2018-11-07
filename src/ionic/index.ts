@@ -3,6 +3,8 @@ const plugin = function() {
 };
 
 export default class WatermarkVideo {
+  private _objectInstance: any;
+
   /**
    * @description Add water mark to a video
    *
@@ -39,5 +41,12 @@ export default class WatermarkVideo {
       top,
       left
     ]);
+  }
+  /**
+   * Registers a listener that gets called whenever a new chunk of data is transferred.
+   * @param {Function} listener Listener that takes a progress event.
+   */
+  onProgress(listener: (event: ProgressEvent) => any): void {
+    this._objectInstance.onprogress = listener;
   }
 }

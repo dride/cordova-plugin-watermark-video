@@ -1,5 +1,5 @@
 var plugin = function () {
-    return window.WatermarkVideo;
+    return window.Watermark;
 };
 var WatermarkVideo = (function () {
     function WatermarkVideo() {
