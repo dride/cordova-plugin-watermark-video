@@ -28,7 +28,7 @@ var Watermark = {
           var res = JSON.parse(result);
           if (res.progress) {
             if (progress) {
-              progress(result);
+              progress(res.progress);
             }
           }
           if (res.done) {
