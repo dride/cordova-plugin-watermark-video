@@ -3,8 +3,6 @@ const plugin = function() {
 };
 
 export default class WatermarkVideo {
-  private _objectInstance: any;
-
   /**
    * @description Add water mark to a video
    *
@@ -14,6 +12,7 @@ export default class WatermarkVideo {
    * @param waterMarkImageSrc src of water mark image, use example to see how to add local images
    * @param top position of image - 0 for top
    * @param left position of image - 0 for left
+   * @param progress return the progress status in %
    * @example
    * ```typescript
    * watermarkVideo.addWatermarkToVideo(
@@ -31,7 +30,8 @@ export default class WatermarkVideo {
     videoDest: string,
     waterMarkImageSrc: string,
     top: number,
-    left: number
+    left: number,
+    progress: () => string
   ): Promise<string> {
     let watermark = plugin();
     return watermark.addWatermarkToVideo.apply(watermark, [
@@ -41,12 +41,5 @@ export default class WatermarkVideo {
       top,
       left
     ]);
-  }
-  /**
-   * Registers a listener that gets called whenever a new chunk of data is transferred.
-   * @param {Function} listener Listener that takes a progress event.
-   */
-  onProgress(listener: (event: ProgressEvent) => any): void {
-    this._objectInstance.onprogress = listener;
   }
 }

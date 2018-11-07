@@ -13,6 +13,7 @@ var WatermarkVideo = (function () {
      * @param waterMarkImageSrc src of water mark image, use example to see how to add local images
      * @param top position of image - 0 for top
      * @param left position of image - 0 for left
+     * @param progress return the progress status in %
      * @example
      * ```typescript
      * watermarkVideo.addWatermarkToVideo(
@@ -24,7 +25,7 @@ var WatermarkVideo = (function () {
      *);
      * ```
      */
-    WatermarkVideo.addWatermarkToVideo = function (videoSrc, videoDest, waterMarkImageSrc, top, left) {
+    WatermarkVideo.addWatermarkToVideo = function (videoSrc, videoDest, waterMarkImageSrc, top, left, progress) {
         var watermark = plugin();
         return watermark.addWatermarkToVideo.apply(watermark, [
             videoSrc,
@@ -33,13 +34,6 @@ var WatermarkVideo = (function () {
             top,
             left
         ]);
-    };
-    /**
-     * Registers a listener that gets called whenever a new chunk of data is transferred.
-     * @param {Function} listener Listener that takes a progress event.
-     */
-    WatermarkVideo.prototype.onProgress = function (listener) {
-        this._objectInstance.onprogress = listener;
     };
     return WatermarkVideo;
 }());
