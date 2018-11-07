@@ -84,7 +84,7 @@
     
 
     NSTimer *progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateExportDisplay:)
-                                                            userInfo:assetExport repeats:YES];
+                                                            userInfo:command repeats:YES];
     
     [assetExport exportAsynchronouslyWithCompletionHandler:
          ^(void ) {
@@ -93,6 +93,7 @@
              {
                  dispatch_async(dispatch_get_main_queue(), ^{
                      CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", assetExport.outputURL]];
+                     [pluginResult setKeepCallbackAsBool:NO];
                      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
                  });
              }
@@ -100,6 +101,8 @@
              {
                  NSLog(@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status);
                  CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"Export failed: %@ - %ld", [[assetExport error] localizedDescription],(long)assetExport.status]];
+                 [pluginResult setKeepCallbackAsBool:NO];
+
                  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
              }
 
@@ -107,12 +110,28 @@
      ];
 
 }
+
+
+// - (void)updateExportDisplay:(NSTimer*)timer {
+//     AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
+//     NSLog (@"Got the string: %f", assetExport.progress);
+// }
+
 - (void)updateExportDisplay:(NSTimer*)timer {
-    AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
-    NSLog (@"Got the string: %f", assetExport.progress);
+    //AVAssetExportSession *assetExport =(AVAssetExportSession*)[timer userInfo];
+    CDVInvokedUrlCommand *command =(AVAssetExportSession*)[timer userInfo];
+    //NSLog (@"Got the string: %f", assetExport.progress);
+    
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"%@", 5]];
+    [pluginResult setKeepCallbackAsBool:YES];
+
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    
     
 
 }
+
+
 
 
 @end

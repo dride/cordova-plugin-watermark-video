@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		xmlns="http://schemas.android.com/apk/res/androoid"
 		id="cordova-plugin-watermark-video"
-		version="0.1.0">
+		version="0.2.0">
 
 		<name>watermarkvideo</name>
 		<description>Overlay video with watermark</description>
