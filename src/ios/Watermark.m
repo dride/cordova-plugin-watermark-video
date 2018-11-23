@@ -127,7 +127,7 @@
     
 
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:
-                                        [NSString stringWithFormat:@"{\"progress\": %f}", assetExport.progress*100]
+                                        [NSString stringWithFormat:@"{\"progress\": %f}", assetExport.progress*500]
                                     ];
     [pluginResult setKeepCallbackAsBool:YES];
 
