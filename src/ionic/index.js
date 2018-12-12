@@ -1,7 +1,7 @@
 var plugin = function () {
     return window.Watermark;
 };
-var WatermarkVideo = (function () {
+var WatermarkVideo = /** @class */ (function () {
     function WatermarkVideo() {
     }
     /**
