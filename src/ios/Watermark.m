@@ -8,6 +8,16 @@
 - (void)addWatermarkToVideo:(CDVInvokedUrlCommand*)command {
    
     @try{
+        
+        if (@available(iOS 10.0, *)) {
+            NSLog(@"iOS not supported");
+            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:
+                                             [NSString stringWithFormat:@"iOS not supported"]];
+            [pluginResult setKeepCallbackAsBool:NO];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+            return;
+        }
+        
         NSDictionary* options = [command argumentAtIndex:0];
         NSString* videoSrc = [options objectForKey:@"videoSrc"];
         NSString* videoDest = [options objectForKey:@"videoDest"];
