@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-watermark-video",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Add watermark to videos",
   "cordova": {
     "id": "cordova-plugin-watermark-video",
