@@ -1,6 +1,7 @@
 #import "Watermark.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 
 @implementation Watermark
 
@@ -9,7 +10,7 @@
    
     @try{
         
-        if (@available(iOS 10.0, *)) {
+        if (SYSTEM_VERSION_LESS_THAN(@"11.0")) {
             NSLog(@"iOS not supported");
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:
                                              [NSString stringWithFormat:@"iOS not supported"]];
