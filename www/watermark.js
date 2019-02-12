@@ -23,7 +23,7 @@ var Watermark = {
     progress
   ) {
     return new Promise(function(resolve, reject) {
-      var callback = result => {
+      var callback = function(result) {
         try {
           var res = JSON.parse(result);
           if (res.progress) {
